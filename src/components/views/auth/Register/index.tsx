@@ -20,14 +20,14 @@ const RegisterView = () => {
       phone: form.phone.value,
       password: form.password.value,
     };
-    const response = await fetch("/api/user/register", {
+    const result = await fetch("/api/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
-    if (response.status === 200) {
+    if (result.status === 200) {
       form.reset();
       setIsLoading(false);
       push("/auth/login");
