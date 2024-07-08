@@ -35,13 +35,34 @@
       background-color: #000;
       color: #fff;
       width: 100%;
-      padding: 10px;
+      padding: 15px;
       border: none;
+    }
+    &__devider {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    &__other {
+      width: 100%;
+      &__button {
+        background-color: #000;
+        color: #fff;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        i {
+          font-size: 24px;
+        }
+      }
     }
   }
   &__link {
     a {
-      color: #23bebe;
+      color: #535c91;
     }
   }
 }

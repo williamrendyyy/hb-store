@@ -31,11 +31,11 @@ const LoginView = () => {
         push(callbackUrl);
       } else {
         setIsLoading(false);
-        setError("Email atau Password Salah");
+        setError("Email Or Passwrod Is Incorrect");
       }
     } catch (error) {
       setIsLoading(false);
-      setError("Email atau Password Salah");
+      setError("Email Or Passwrod Is Incorrect");
     }
   };
 
@@ -67,9 +67,22 @@ const LoginView = () => {
             {isLoading ? "Loading..." : "Login"}
           </button>
         </form>
+        <hr className={styles.login__form__devider} />
+        <div className={styles.login__form__other}>
+          <button
+            type="button"
+            onClick={() => signIn("google", { callbackUrl, redirect: false })}
+            className={styles.login__form__other__button}
+          >
+            <i className="bx bxl-google" />
+            Login With Google
+          </button>
+        </div>
       </div>
+
       <p className={styles.login__link}>
-        Tidak Punya Akun? <Link href="/auth/register"> Daftarlah Lok</Link>
+        Don{"'"}t Have An Account? Sign Up
+        <Link href="/auth/register"> Here</Link>
       </p>
     </div>
   );
