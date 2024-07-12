@@ -7,6 +7,11 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
+  border-radius: 8px;
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
 }
 
 .primary {
