@@ -2,12 +2,11 @@ import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
 import userServices from "@/services/user";
 import styles from "./ModalDeleteUser.module.scss";
-import { useSession } from "next-auth/react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { User } from "@/types/user.type";
 
 type Proptypes = {
-  deletedUser: any;
+  deletedUser: User | any;
   setDeletedUser: Dispatch<SetStateAction<{}>>;
   setUsersData: Dispatch<SetStateAction<User[]>>;
   setToaster: Dispatch<SetStateAction<{}>>;

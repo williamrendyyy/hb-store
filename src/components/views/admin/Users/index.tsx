@@ -35,7 +35,7 @@ const UsersAdminView = (props: PropTypes) => {
                 <th>Email</th>
                 <th>Status</th>
                 <th>Role</th>
-                <th>Actions</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
