@@ -3,6 +3,7 @@ import styles from "./Products.module.scss";
 import { Product } from "@/types/product.type";
 import { convertIDR } from "@/utils/currency";
 import Card from "./Card";
+import Link from "next/link";
 
 type PropTypes = {
   products: Product[];
@@ -21,23 +22,23 @@ const ProductView = (props: PropTypes) => {
             </h4>
             <div className={styles.product__main__filter__data__list}>
               <div className={styles.product__main__filter__data__list__item}>
-                <input type="checkbox" id="men" />
+                <input type="checkbox" id="Men" />
                 <label
                   className={
                     styles.product__main__filter__data__list__item__label
                   }
-                  htmlFor="men"
+                  htmlFor="Men's Shoes"
                 >
                   Men
                 </label>
               </div>
               <div className={styles.product__main__filter__data__list__item}>
-                <input type="checkbox" id="women" />
+                <input type="checkbox" id="Women" />
                 <label
                   className={
                     styles.product__main__filter__data__list__item__label
                   }
-                  htmlFor="women"
+                  htmlFor="Women's Shoes"
                 >
                   Women
                 </label>
@@ -47,7 +48,9 @@ const ProductView = (props: PropTypes) => {
         </div>
         <div className={styles.product__main__content}>
           {products.map((product) => (
-            <Card key={product.id} product={product} />
+            <Link href={`/products/${product.id}`} key={product.id}>
+              <Card product={product} />
+            </Link>
           ))}
         </div>
       </div>

@@ -188,12 +188,16 @@ const ProfileMemberView = ({
             <h2 className={styles.profile__main__row__profile__title}>
               Profile
             </h2>
-            <form onSubmit={handleChangeProfile}>
+            <form
+              onSubmit={handleChangeProfile}
+              className={styles.profile__main__row__profile__form}
+            >
               <Input
                 label="Fullname"
                 type="text"
                 name="fullname"
                 defaultValue={profile.fullname}
+                className={styles.profile__main__row__profile__form__input}
               />
               <Input
                 label="Phone"
@@ -201,6 +205,7 @@ const ProfileMemberView = ({
                 name="phone"
                 defaultValue={profile.phone}
                 placeholder="Input your phone number"
+                className={styles.profile__main__row__profile__form__input}
               />
               <Input
                 label="Email"
@@ -208,6 +213,7 @@ const ProfileMemberView = ({
                 name="email"
                 defaultValue={profile.email}
                 disabled
+                className={styles.profile__main__row__profile__form__input}
               />
               <Input
                 label="Role"
@@ -215,6 +221,7 @@ const ProfileMemberView = ({
                 name="role"
                 defaultValue={profile.role}
                 disabled
+                className={styles.profile__main__row__profile__form__input}
               />
               <Button type="submit" variant="primary">
                 {isLoading === "profile" ? "loading..." : "Update Profile"}
@@ -223,13 +230,17 @@ const ProfileMemberView = ({
           </div>
           <div className={styles.profile__main__row__password}>
             <h2>Change Password</h2>
-            <form onSubmit={handleChangePassword}>
+            <form
+              onSubmit={handleChangePassword}
+              className={styles.profile__main__row__password__form}
+            >
               <Input
                 name="old-password"
                 label="Old Password"
                 type="password"
                 disabled={profile.type === "google"}
                 placeholder="Enter your current password"
+                className={styles.profile__main__row__password__form__input}
               />
               <Input
                 name="new-password"
@@ -237,6 +248,7 @@ const ProfileMemberView = ({
                 type="password"
                 disabled={profile.type === "google"}
                 placeholder="Enter your new password"
+                className={styles.profile__main__row__password__form__input}
               />
               <Button
                 type="submit"

@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["static.nike.com"],
+    // domains: ["static.nike.com"],
     remotePatterns: [
       {
         protocol: "https",

@@ -58,10 +58,30 @@ const RegisterView = ({
       linkText="Have an Account? Sign In "
     >
       <form onSubmit={handleSubmit}>
-        <Input label="Email" name="email" type="email" />
-        <Input label="Fullname" name="fullname" type="text" />
-        <Input label="Phone" name="phone" type="number" />
-        <Input label="Password" name="password" type="password" />
+        <Input
+          className={styles.register__input}
+          label="Email"
+          name="email"
+          type="email"
+        />
+        <Input
+          className={styles.register__input}
+          label="Fullname"
+          name="fullname"
+          type="text"
+        />
+        <Input
+          className={styles.register__input}
+          label="Phone"
+          name="phone"
+          type="number"
+        />
+        <Input
+          className={styles.register__input}
+          label="Password"
+          name="password"
+          type="password"
+        />
         <Button type="submit" className={styles.register__button}>
           {isLoading ? "Loading..." : "Register"}
         </Button>
