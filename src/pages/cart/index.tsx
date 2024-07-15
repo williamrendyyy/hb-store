@@ -16,7 +16,7 @@ const CartPage = (props: Propstypes) => {
   const [products, setProducts] = useState([]);
 
   const getCart = async (token: string) => {
-    const { data } = await userServices.getCart(token);
+    const { data } = await userServices.getCart();
     setCart(data.data);
   };
 

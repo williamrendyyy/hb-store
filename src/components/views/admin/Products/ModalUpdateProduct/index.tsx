@@ -22,22 +22,20 @@ const ModalUpdateProduct = (props: Propypes) => {
   const { updatedProduct, setUpdatedProduct, setToaster, setProductsData } =
     props;
   const [isLoading, setIsLoading] = useState(false);
-  const [stokCount, setStokCount] = useState(updatedProduct.stock);
+  const [stockCount, setStockCount] = useState(updatedProduct.stock);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
-  const session: any = useSession();
-  console.log(updatedProduct);
 
   const handleStock = (e: any, i: number, type: string) => {
-    const newStockCount: any = [...stokCount];
+    const newStockCount: any = [...stockCount];
     newStockCount[i][type] = e.target.value;
-    setStokCount(newStockCount);
+    setStockCount(newStockCount);
   };
 
   const updateProduct = async (
     form: any,
     newImageURL: string = updatedProduct.image
   ) => {
-    const stock = stokCount.map((stock: { size: string; qty: number }) => {
+    const stock = stockCount.map((stock: { size: string; qty: number }) => {
       return {
         size: stock.size,
         qty: parseInt(`${stock.qty}`),
@@ -47,16 +45,13 @@ const ModalUpdateProduct = (props: Propypes) => {
     const data = {
       name: form.name.value,
       price: parseInt(form.price.value),
+      description: form.description.value,
       category: form.category.value,
       status: form.status.value,
       stock: stock,
       image: newImageURL,
     };
-    const result = await productServices.updateProduct(
-      updatedProduct.id,
-      data,
-      session.data?.accessToken
-    );
+    const result = await productServices.updateProduct(updatedProduct.id, data);
     if (result.status === 200) {
       setProductsData(result.data.data);
       setUploadedImage(null);
@@ -120,8 +115,16 @@ const ModalUpdateProduct = (props: Propypes) => {
           label="Price"
           name="price"
           type="number"
-          placeholder="Insert price"
+          placeholder="Insert product price"
           defaultValue={updatedProduct.price}
+          className={styles.form__input}
+        />
+        <Input
+          label="Description"
+          name="description"
+          type="text"
+          placeholder="Insert product description"
+          defaultValue={updatedProduct.description}
           className={styles.form__input}
         />
         <Select
@@ -164,7 +167,7 @@ const ModalUpdateProduct = (props: Propypes) => {
           />
         </div>
         <label htmlFor="stock">Stock</label>
-        {stokCount.map((item: { size: string; qty: number }, i: number) => (
+        {stockCount.map((item: { size: string; qty: number }, i: number) => (
           <div className={styles.form__stock} key={i}>
             <div className={styles.form__stock__item}>
               <Input
@@ -196,7 +199,7 @@ const ModalUpdateProduct = (props: Propypes) => {
         <Button
           type="button"
           className={styles.form__stock__button}
-          onClick={() => setStokCount([...stokCount, { size: "", qty: 0 }])}
+          onClick={() => setStockCount([...stockCount, { size: "", qty: 0 }])}
         >
           Add New Stock
         </Button>

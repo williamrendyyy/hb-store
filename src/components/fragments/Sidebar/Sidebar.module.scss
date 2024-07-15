@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: #000;
+  background-color: #040d12;
   color: #fff;
   padding: 20px;
   width: 300px;
@@ -31,12 +31,12 @@
         }
         &:hover {
           background-color: #fff;
-          color: #000;
+          color: #040d12;
           transition: 0.3s;
         }
         &__active {
           background-color: #fff;
-          color: #000;
+          color: #040d12;
           transition: 0.3s;
         }
       }

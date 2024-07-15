@@ -44,11 +44,7 @@ const ModalAddProduct = (props: Propypes) => {
             const data = {
               image: newImageURL,
             };
-            const result = await productServices.updateProduct(
-              id,
-              data,
-              session.data?.accessToken
-            );
+            const result = await productServices.updateProduct(id, data);
             if (result.status === 200) {
               setProductsData(result.data.data);
               setUploadedImage(null);
@@ -89,16 +85,14 @@ const ModalAddProduct = (props: Propypes) => {
     const data = {
       name: form.name.value,
       price: parseInt(form.price.value),
+      description: form.description.value,
       category: form.category.value,
       status: form.status.value,
       stock: stock,
       image: "",
     };
 
-    const result = await productServices.addProduct(
-      data,
-      session.data?.accessToken
-    );
+    const result = await productServices.addProduct(data);
 
     if (result.status === 200) {
       uploadImage(result.data.data.id, form);
@@ -121,6 +115,13 @@ const ModalAddProduct = (props: Propypes) => {
           name="price"
           type="number"
           placeholder="Insert product price"
+          className={styles.form__input}
+        />
+        <Input
+          label="Description"
+          name="description"
+          type="text"
+          placeholder="Insert product description"
           className={styles.form__input}
         />
         <Select

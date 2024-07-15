@@ -17,7 +17,7 @@ type PropTypes = {
 
 const DetailProductView = (props: PropTypes) => {
   const { product, cart, productId, setToaster } = props;
-  const { status, data: session }: any = useSession();
+  const { status }: any = useSession();
   const router = useRouter();
   const [selectedSize, setSelectedSize] = useState("");
 
@@ -40,22 +40,15 @@ const DetailProductView = (props: PropTypes) => {
           ...cart,
           {
             id: productId,
-            // name: product?.name,
-            // image: product?.image,
-            // category: product?.category,
-            // price: product?.price,
             size: selectedSize,
             qty: 1,
           },
         ];
       }
       try {
-        const result = await userServices.addToCart(
-          {
-            carts: newCart,
-          },
-          session?.accessToken
-        );
+        const result = await userServices.addToCart({
+          carts: newCart,
+        });
         if (result.status === 200) {
           setSelectedSize("");
           setToaster({
@@ -79,8 +72,8 @@ const DetailProductView = (props: PropTypes) => {
           <Image
             src={product?.image}
             alt={product?.name}
-            width="500"
-            height="500"
+            width={500}
+            height={500}
             className={styles.detail__main__left__image}
           />
         </div>
@@ -93,6 +86,9 @@ const DetailProductView = (props: PropTypes) => {
           <h3 className={styles.detail__main__right__price}>
             {convertIDR(product?.price)}
           </h3>
+          <p className={styles.detail__main__right__description}>
+            {product?.description}
+          </p>
           <p className={styles.detail__main__right__subtitle}>
             Sizes Available
           </p>

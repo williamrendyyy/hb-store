@@ -1,18 +1,87 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
   height: 80px;
-  background-color: #000000;
-  color: #ffffff;
-  padding: 20px;
+  background-color: #ffffff;
+  color: #040d12;
+  padding: 20px 2.5vw;
   position: fixed;
+  &__nav {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+    &__item {
+      font-size: 18px;
+      font-weight: 400;
+      cursor: pointer;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      &--active {
+        border-bottom: 2px solid #000;
+        font-weight: 750;
+      }
+    }
+  }
+  &__user {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    &__cart {
+      &__icon {
+        font-size: 30px;
+        cursor: pointer;
+      }
+    }
+    &__profile {
+      position: relative;
+      &__image {
+        border-radius: 50px;
+        cursor: pointer;
+      }
+      &__dropdown {
+        position: absolute;
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+        right: 0;
+        top: 50px;
+        border-radius: 8px;
+        display: none;
+        flex-direction: column;
+        &--active {
+          display: flex;
+          z-index: 1;
+        }
+        &__item {
+          text-align: left;
+          width: 150px;
+          padding: 10px 20px;
+          background-color: transparent;
+          border: none;
+          font-size: 16px;
+          cursor: pointer;
+          &:last-child {
+            border-radius: 0 0 8px 8px;
+          }
+          &:first-child {
+            border-radius: 8px 8px 0 0;
+          }
+          &:hover {
+            background-color: #eee;
+          }
+          button {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
   &__button {
     background-color: #ffffff;
     border: none;
     padding: 12px 16px;
-    color: #000000;
+    color: #040d12;
     cursor: pointer;
   }
 }

@@ -1,7 +1,7 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Button from "@/components/ui/Button";
 import styles from "./Products.module.scss";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import { convertIDR } from "@/utils/currency";
 import { Product } from "@/types/product.type";
@@ -54,59 +54,58 @@ const ProductsAdminView = (props: PropTypes) => {
               </tr>
             </thead>
             <tbody>
-              {productsData &&
-                productsData.map((product, index) => (
-                  <>
-                    <tr key={product.id}>
-                      <td rowSpan={product.stock.length}>{index + 1}</td>
-                      <td rowSpan={product.stock.length}>
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          width={100}
-                          height={100}
-                        />
-                      </td>
-                      <td rowSpan={product.stock.length}>{product.name}</td>
-                      <td rowSpan={product.stock.length}>{product.category}</td>
-                      <td rowSpan={product.stock.length}>
-                        {convertIDR(product.price)}
-                      </td>
-                      <td>{product.stock[0].size}</td>
-                      <td>{product.stock[0].qty}</td>
-                      <td rowSpan={product.stock.length}>
-                        <div className={styles.products__table__action}>
-                          <Button
-                            type="button"
-                            className={styles.products__table__action__edit}
-                            onClick={() => setUpdatedProduct(product)}
-                          >
-                            <i className="bx bx-edit" />
-                          </Button>
-                          <Button
-                            type="button"
-                            className={styles.products__table__action__delete}
-                            onClick={() => setDeletedProduct(product)}
-                          >
-                            <i className="bx bx-trash" />
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                    {product.stock.map(
-                      (stock: { size: string; qty: number }, index: number) => (
-                        <>
-                          {index > 0 && (
-                            <tr key={stock.size}>
-                              <td>{stock.size}</td>
-                              <td>{stock.qty}</td>
-                            </tr>
-                          )}
-                        </>
-                      )
-                    )}
-                  </>
-                ))}
+              {productsData.map((product, index) => (
+                <Fragment key={product.id}>
+                  <tr>
+                    <td rowSpan={product.stock.length}>{index + 1}</td>
+                    <td rowSpan={product.stock.length}>
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={100}
+                        height={100}
+                      />
+                    </td>
+                    <td rowSpan={product.stock.length}>{product.name}</td>
+                    <td rowSpan={product.stock.length}>{product.category}</td>
+                    <td rowSpan={product.stock.length}>
+                      {convertIDR(product.price)}
+                    </td>
+                    <td>{product.stock[0].size}</td>
+                    <td>{product.stock[0].qty}</td>
+                    <td rowSpan={product.stock.length}>
+                      <div className={styles.products__table__action}>
+                        <Button
+                          type="button"
+                          className={styles.products__table__action__edit}
+                          onClick={() => setUpdatedProduct(product)}
+                        >
+                          <i className="bx bx-edit" />
+                        </Button>
+                        <Button
+                          type="button"
+                          className={styles.products__table__action__delete}
+                          onClick={() => setDeletedProduct(product)}
+                        >
+                          <i className="bx bx-trash" />
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                  {product.stock.map(
+                    (stock: { size: string; qty: number }, index: number) => (
+                      <Fragment key={stock.size}>
+                        {index > 0 && (
+                          <tr>
+                            <td>{stock.size}</td>
+                            <td>{stock.qty}</td>
+                          </tr>
+                        )}
+                      </Fragment>
+                    )
+                  )}
+                </Fragment>
+              ))}
             </tbody>
           </table>
         </div>
