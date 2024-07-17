@@ -24,14 +24,25 @@
       padding: 20px;
       margin-top: 20px;
       &__title {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
       &__selected {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        &__note {
-          margin-bottom: 20px;
+        &__title {
+          margin-bottom: 5px;
+        }
+        &__phone {
+          margin-bottom: 5px;
+        }
+        &__selected {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        &__address {
+          margin-bottom: 15px;
+        }
+        &__button {
+          width: 100%;
         }
       }
     }

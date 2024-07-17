@@ -67,25 +67,29 @@ const CheckoutView = () => {
         <div className={styles.checkout__main}>
           <h1 className={styles.checkout__main__title}>Checkout</h1>
           <div className={styles.checkout__main__address}>
-            <h3 className={styles.checkout__main__address__title}>
+            <h4 className={styles.checkout__main__address__title}>
               {" "}
               Shipping Address
-            </h3>
+            </h4>
             {profile?.address?.length > 0 ? (
               <div className={styles.checkout__main__address__selected}>
-                <h4 className={styles.checkout__main__address__selected__title}>
-                  {profile?.address[selectedAddress]?.recipient} -{" "}
+                <h2 className={styles.checkout__main__address__selected__title}>
+                  {profile?.address[selectedAddress]?.recipient}
+                </h2>
+                <p className={styles.checkout__main__address__selected__phone}>
                   {profile?.address[selectedAddress]?.phone}
-                </h4>
+                </p>
                 <p
                   className={styles.checkout__main__address__selected__address}
                 >
-                  {profile?.address[selectedAddress]?.addressLine}
+                  {profile?.address[selectedAddress]?.addressLine} (
+                  {profile?.address[selectedAddress]?.note})
                 </p>
-                <p className={styles.checkout__main__address__selected__note}>
-                  Note: {profile?.address[selectedAddress]?.note}
-                </p>
-                <Button type="button" onClick={() => setChangeAddress(true)}>
+                <Button
+                  className={styles.checkout__main__address__selected__button}
+                  type="button"
+                  onClick={() => setChangeAddress(true)}
+                >
                   Change Address
                 </Button>
               </div>
@@ -182,7 +186,8 @@ const CheckoutView = () => {
       </div>
       {changeAddress && (
         <ModalChangeAddress
-          address={profile.address}
+          profile={profile}
+          setProfile={setProfile}
           setChangeAddress={setChangeAddress}
           setSelectedAddress={setSelectedAddress}
           selectedAddress={selectedAddress}
