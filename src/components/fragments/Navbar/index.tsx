@@ -41,7 +41,7 @@ const Navbar = () => {
       {data ? (
         <div className={styles.navbar__user}>
           <div className={styles.navbar__user__cart}>
-            <Link href={"cart"}>
+            <Link href={"/cart"}>
               <i
                 className={`bx bx-shopping-bag ${styles.navbar__user__cart__icon}`}
               />
