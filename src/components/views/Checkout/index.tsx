@@ -11,6 +11,14 @@ import { ToasterContext } from "@/contexts/ToasterContext";
 import { useSession } from "next-auth/react";
 import productServices from "@/services/product";
 import ModalChangeAddress from "./ModalChangeAddress";
+import Script from "next/script";
+import transactionServices from "@/services/transaction";
+
+declare global {
+  interface Window {
+    snap: any;
+  }
+}
 
 const CheckoutView = () => {
   const { setToaster } = useContext(ToasterContext);
@@ -60,11 +68,33 @@ const CheckoutView = () => {
       },
       0
     );
+
     return total;
+  };
+
+  const handleCheckout = async () => {
+    const payload = {
+      user: {
+        fullname: profile.fullname,
+        email: profile.email,
+        address: profile.address[selectedAddress],
+      },
+      transaction: {
+        items: profile.carts,
+        total: getTotalPrize(),
+      },
+    };
+    const { data } = await transactionServices.generateTransaction(payload);
+    window.snap.pay(data.data.token);
   };
 
   return (
     <>
+      <Script
+        src={process.env.NEXT_PUBLIC_MIDTRANS_SNAP_URL}
+        data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
+        strategy="lazyOnload"
+      />
       <div className={styles.checkout}>
         <div className={styles.checkout__main}>
           <h1 className={styles.checkout__main__title}>Checkout</h1>
@@ -183,7 +213,11 @@ const CheckoutView = () => {
             <p>{convertIDR(getTotalPrize())}</p>
           </div>
           <hr />
-          <Button type="button" className={styles.checkout__summary__button}>
+          <Button
+            className={styles.checkout__summary__button}
+            type="button"
+            onClick={() => handleCheckout()}
+          >
             Process Payment
           </Button>
         </div>
