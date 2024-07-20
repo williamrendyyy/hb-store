@@ -1,0 +1,15 @@
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  h1 {
+    font-size: 48px;
+  }
+  h4 {
+    color: #858585;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+}
