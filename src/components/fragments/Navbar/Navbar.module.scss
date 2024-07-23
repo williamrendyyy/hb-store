@@ -8,6 +8,10 @@
   color: #040d12;
   padding: 20px 2.5vw;
   position: fixed;
+  &__title {
+    font-family: "sirukota";
+    font-size: 50px;
+  }
   &__nav {
     display: flex;
     gap: 20px;
@@ -51,6 +55,7 @@
         border-radius: 8px;
         display: none;
         flex-direction: column;
+        background-color: #ffffff;
         &--active {
           display: flex;
           z-index: 1;

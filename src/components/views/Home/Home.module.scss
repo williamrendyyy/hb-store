@@ -1,4 +1,5 @@
 .home {
+  background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,7 +8,26 @@
   h1 {
     font-size: 48px;
   }
-  &__button {
-    margin-top: 10px;
+
+  &__image {
+    margin-right: 85%;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://mrwallpaper.com/images/hd/image-all-white-sneakers-tplj1n9wo7x0mjzu.jpg");
+    background-position: fixed;
+    &__text {
+      position: fixed;
+      top: 50%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      color: #141414;
+      font-size: 40px;
+      padding: 0.5rem 1rem;
+      &__button {
+        background-color: #000000;
+        position: center;
+        margin-top: 10px;
+      }
+    }
   }
 }

@@ -5,12 +5,17 @@ import Link from "next/link";
 const HomeView = () => {
   return (
     <div className={styles.home}>
-      <h1>Hello Guys</h1>
-      <Link href={"/products"}>
-        <Button className={styles.home__button} type="button">
-          Order Here!
-        </Button>
-      </Link>
+      <div className={styles.home__image}>
+        <div className={styles.home__image__text}>
+          <h1>Hello </h1>
+          <h1>Sneakerhead!! </h1>
+          <Link href={"/products"}>
+            <Button className={styles.home__image__text__button} type="button">
+              Choose Your Sneakers!
+            </Button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

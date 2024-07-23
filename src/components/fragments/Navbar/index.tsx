@@ -24,7 +24,7 @@ const Navbar = () => {
   const [dropdownUser, setDropdownUser] = useState(false);
   return (
     <div className={styles.navbar}>
-      <h1>HB STORE</h1>
+      <h1 className={styles.navbar__title}>HB STORE</h1>
       <div className={styles.navbar__nav}>
         {NavItem.map((item) => (
           <Link
@@ -64,10 +64,18 @@ const Navbar = () => {
             >
               <button
                 className={styles.navbar__user__profile__dropdown__item}
+                onClick={() => push("/admin")}
+              >
+                Admin Only
+              </button>
+
+              <button
+                className={styles.navbar__user__profile__dropdown__item}
                 onClick={() => push("/member/profile")}
               >
                 Profile
               </button>
+
               <button
                 className={styles.navbar__user__profile__dropdown__item}
                 onClick={() => signOut()}

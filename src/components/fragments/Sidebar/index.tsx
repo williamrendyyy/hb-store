@@ -14,11 +14,11 @@ type PropTypes = {
 
 const Sidebar = (props: PropTypes) => {
   const { lists } = props;
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebar__top}>
-        <h1 className={styles.sidebar__top__title}>Admin Panel</h1>
+        <h1 className={styles.sidebar__top__title}></h1>
         <div className={styles.sidebar__top__lists}>
           {lists.map((list, index) => (
             <Link
@@ -41,7 +41,15 @@ const Sidebar = (props: PropTypes) => {
       </div>
       <div className={styles.sidebar__bottom}>
         <Button
-          className={styles.sidebar__bottom__button}
+          className={styles.sidebar__bottom__button1}
+          type="button"
+          variant="secondary"
+          onClick={() => push("/")}
+        >
+          Home
+        </Button>
+        <Button
+          className={styles.sidebar__bottom__button2}
           type="button"
           variant="secondary"
           onClick={() => signOut()}
