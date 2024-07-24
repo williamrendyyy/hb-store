@@ -2,8 +2,6 @@ import { Product } from "@/types/product.type";
 import styles from "./Checkout.module.scss";
 import Image from "next/image";
 import { convertIDR } from "@/utils/currency";
-import Select from "@/components/ui/Select";
-import Input from "@/components/ui/Input";
 import { Fragment, useContext, useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
 import userServices from "@/services/user";
@@ -13,12 +11,6 @@ import productServices from "@/services/product";
 import ModalChangeAddress from "./ModalChangeAddress";
 import Script from "next/script";
 import transactionServices from "@/services/transaction";
-
-declare global {
-  interface Window {
-    snap: any;
-  }
-}
 
 const CheckoutView = () => {
   const { setToaster } = useContext(ToasterContext);

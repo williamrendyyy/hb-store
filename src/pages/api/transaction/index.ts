@@ -3,6 +3,7 @@ import { retrieveDataById, updateData } from "@/lib/firebase/service";
 import { createTransaction, getTransaction } from "@/lib/midtrans/transaction";
 import { responseApiNotFound, responseApiSuccess } from "@/utils/responseApi";
 import { verify } from "@/utils/verifyToken";
+import { arrayUnion } from "firebase/firestore";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -10,7 +11,6 @@ type Data = {
   statusCode: number;
   message: string;
 };
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
@@ -20,26 +20,7 @@ export default async function handler(
       if (decoded.id) {
         const order_id = req.query.order_id;
         getTransaction(`${order_id}`, async (result: any) => {
-          const user: any = await retrieveDataById("users", decoded.id);
-          const transaction = user.transaction.map((data: any) => {
-            if (data.order_id === order_id) {
-              return {
-                ...data,
-                status: result.transaction_status,
-              };
-            }
-            return data;
-          });
-
-          const data = { transaction };
-
-          await updateData("users", decoded.id, data, (result: boolean) => {
-            if (result) {
-              responseApiSuccess(res);
-            } else {
-              responseApiNotFound(res);
-            }
-          });
+          responseApiSuccess(res, result);
         });
       }
     });
@@ -57,7 +38,6 @@ export default async function handler(
           first_name: payload.user.fullname,
           email: payload.user.email,
           phone: payload.user.phone,
-
           shipping_address: {
             first_name: payload.user.address.recipient,
             phone: payload.user.address.phone,
@@ -69,8 +49,6 @@ export default async function handler(
       createTransaction(
         params,
         async (transaction: { token: string; redirect_url: string }) => {
-          const user: any = await retrieveDataById("users", decoded.id);
-          let data = {};
           const newTransaction = {
             ...payload.transaction,
             address: payload.user.address,
@@ -80,17 +58,10 @@ export default async function handler(
             order_id: generateOrderId,
           };
 
-          if (user.transaction) {
-            data = {
-              transaction: [...user.transaction, newTransaction],
-              carts: [],
-            };
-          } else {
-            data = {
-              transaction: [newTransaction],
-              carts: [],
-            };
-          }
+          const data = {
+            transaction: arrayUnion(newTransaction),
+            carts: [],
+          };
 
           await updateData("users", decoded.id, data, (result: boolean) => {
             if (result) {
@@ -110,7 +81,24 @@ export default async function handler(
       if (decoded.id) {
         const order_id = req.query.order_id;
         getTransaction(`${order_id}`, async (result: any) => {
-          responseApiSuccess(res, result);
+          const user: any = await retrieveDataById("users", decoded.id);
+          const index = user.transaction.findIndex(
+            (transaction: any) => transaction.order_id === order_id
+          );
+
+          if (index !== -1) {
+            user.transaction[index].status = result.transaction_status;
+          }
+
+          const data = { transaction: user.transaction };
+
+          await updateData("users", decoded.id, data, (result: boolean) => {
+            if (result) {
+              responseApiSuccess(res);
+            } else {
+              responseApiNotFound(res);
+            }
+          });
         });
       }
     });

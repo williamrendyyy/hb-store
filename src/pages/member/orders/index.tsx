@@ -1,11 +1,21 @@
-import OrdersMemberView from "@/components/views/Member/Orders";
+import MemberOrdersView from "@/components/views/Member/Orders";
+import userServices from "@/services/user";
+import { useEffect, useState } from "react";
 
-const MemberPage = () => {
+const MemberOrdersPage = () => {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const getAllUsers = async () => {
+      const { data } = await userServices.getAllUsers();
+      setUsers(data.data);
+    };
+    getAllUsers();
+  }, []);
   return (
     <>
-      <OrdersMemberView />
+      <MemberOrdersView users={users} />
     </>
   );
 };
 
-export default MemberPage;
+export default MemberOrdersPage;
