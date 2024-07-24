@@ -106,7 +106,7 @@ const ModalUpdateProduct = (props: Propypes) => {
 
   return (
     <Modal onClose={() => setUpdatedProduct(false)}>
-      <h1>Update User</h1>
+      <h1>Update Product</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <Input
           label="Name"
