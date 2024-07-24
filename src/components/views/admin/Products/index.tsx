@@ -53,7 +53,7 @@ const ProductsAdminView = (props: PropTypes) => {
               </tr>
             </thead>
             <tbody>
-              {productsData.map((product: Product, index: number) => (
+              {productsData.map((product, index) => (
                 <Fragment key={product.id}>
                   <tr>
                     <td rowSpan={product.stock.length}>{index + 1}</td>
