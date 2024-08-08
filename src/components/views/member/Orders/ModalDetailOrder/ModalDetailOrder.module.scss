@@ -1,0 +1,85 @@
+.modal {
+  &__title {
+    margin-bottom: 20px;
+  }
+  &__subtitle {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  &__data {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    &__item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+  &__product {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    &__item {
+      width: 100%;
+      display: flex;
+      gap: 20px;
+      &__image {
+        width: 90px;
+        height: 90px;
+        border-radius: 4px;
+      }
+      &__info {
+        width: 100%;
+        &__title {
+          font-size: 18px;
+          margin-bottom: 8px;
+        }
+        &__data {
+          &__size {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+          }
+          &__qty {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            &__input {
+              input {
+                width: 50px;
+                text-align: center;
+              }
+            }
+          }
+        }
+        &__delete {
+          cursor: pointer;
+          color: #a4a4a4;
+          margin-top: 40px;
+          background-color: transparent;
+          border: none;
+          outline: none;
+          font-size: 25px;
+        }
+        &__price {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  &__payment {
+    background-color: #009730;
+    padding: 15px;
+    i {
+      font-size: 20px;
+    }
+  }
+}

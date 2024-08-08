@@ -6,14 +6,22 @@ import { User } from "@/types/user.type";
 import userServices from "@/services/user";
 import { convertIDR } from "@/utils/currency";
 import Script from "next/script";
+import ModalDetailOrder from "./ModalDetailOrder";
+import productServices from "@/services/product";
 
-type PropTypes = {
-  users: User[];
-};
-const MemberOrdersView = (props: PropTypes) => {
+const MemberOrdersView = () => {
   const [profile, setProfile] = useState<User | any>({});
-  const [changeImage, setChangeImage] = useState<File | any>({});
-  const [isLoading, setIsLoading] = useState("");
+  const [detailOrder, setDetailOrder] = useState<any>({});
+  const [products, setProducts] = useState([]);
+
+  const getAllProducts = async () => {
+    const { data } = await productServices.getAllProducts();
+    setProducts(data.data);
+  };
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   const getProfile = async () => {
     const { data } = await userServices.getProfile();
@@ -32,9 +40,9 @@ const MemberOrdersView = (props: PropTypes) => {
         strategy="lazyOnload"
       />
       <MemberLayout>
-        <div className={styles.users}>
+        <div className={styles.orders}>
           <h1>Orders History</h1>
-          <table className={styles.users__table}>
+          <table className={styles.orders__table}>
             <thead>
               <tr>
                 <th>#</th>
@@ -52,11 +60,11 @@ const MemberOrdersView = (props: PropTypes) => {
                   <td>{convertIDR(transaction.total)}</td>
                   <td>{transaction.status}</td>
                   <td>
-                    <div className={styles.users__table__action}>
+                    <div className={styles.orders__table__action}>
                       <Button
                         type="button"
-                        onClick={() => {}}
-                        className={styles.users__table__action__edit}
+                        onClick={() => setDetailOrder(transaction)}
+                        className={styles.orders__table__action__edit}
                       >
                         <i className="bx bx-dots-vertical-rounded" />
                       </Button>
@@ -65,7 +73,7 @@ const MemberOrdersView = (props: PropTypes) => {
                         onClick={() => {
                           window.snap.pay(transaction.token);
                         }}
-                        className={styles.users__table__action__payment}
+                        className={styles.orders__table__action__payment}
                         disabled={transaction.status !== "pending"}
                       >
                         <i className="bx bx-money" />
@@ -78,6 +86,13 @@ const MemberOrdersView = (props: PropTypes) => {
           </table>
         </div>
       </MemberLayout>
+      {Object.keys(detailOrder).length > 0 && (
+        <ModalDetailOrder
+          setDetailOrder={setDetailOrder}
+          detailOrder={detailOrder}
+          products={products}
+        />
+      )}
     </>
   );
 };
