@@ -1,7 +1,8 @@
 .cart {
-  padding: 100px 20vw;
+  padding: 20px 20vw;
   display: flex;
   gap: 70px;
+  flex-wrap: wrap; // Allow wrapping on smaller screens
 
   &__summary {
     width: 30%;
@@ -15,6 +16,7 @@
       margin-top: 20px;
     }
   }
+
   &__main {
     width: 60%;
     &__list {
@@ -23,37 +25,47 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+
       &__item {
         width: 100%;
         display: flex;
         gap: 20px;
+
         &__image {
           width: 180px;
           height: 180px;
           border-radius: 8px;
+          flex-shrink: 0; // Prevent image from shrinking
         }
+
         &__info {
           width: 100%;
+
           &__title {
             font-size: 18px;
           }
+
           &__category {
             margin-top: 5px;
           }
+
           &__data {
             display: flex;
-            align-items: center;
             gap: 20px;
             margin-top: 20px;
+            flex-wrap: wrap; // Allow wrapping for smaller screens
+
             &__size {
               display: flex;
               align-items: center;
               gap: 10px;
             }
+
             &__qty {
               display: flex;
               align-items: center;
               gap: 10px;
+
               &__input {
                 input {
                   width: 50px;
@@ -62,6 +74,7 @@
               }
             }
           }
+
           &__delete {
             cursor: pointer;
             color: #a4a4a4;
@@ -71,11 +84,13 @@
             outline: none;
             font-size: 25px;
           }
+
           &__price {
             font-size: 18px;
           }
         }
       }
+
       &__divider {
         width: 100%;
         height: 1px;
@@ -87,10 +102,82 @@
 
     &__empty {
       margin-top: 20px;
+
       &__title {
         font-size: 40px;
         font-weight: 500;
         color: #8a8a8a;
+      }
+    }
+  }
+
+  // Media query for tablets and small screens
+  @media (max-width: 1024px) {
+    padding: 20px 10vw; // Adjust padding for tablets
+
+    &__summary {
+      width: 100%; // Full width on smaller screens
+      margin-bottom: 20px;
+    }
+
+    &__main {
+      width: 100%; // Full width on smaller screens
+    }
+  }
+
+  // Media query for mobile screens
+  @media (max-width: 768px) {
+    padding: 20px 5vw; // Adjust padding for mobile screens
+
+    display: block; // Stack items vertically
+    gap: 20px;
+
+    &__summary {
+      width: 100%; // Full width on mobile screens
+      margin-bottom: 20px;
+    }
+
+    &__main {
+      width: 100%; // Full width on mobile screens
+
+      &__list {
+        &__item {
+          flex-direction: column; // Stack items vertically on mobile screens
+
+          &__image {
+            width: 100%; // Full width on mobile screens
+            height: auto; // Maintain aspect ratio
+          }
+
+          &__info {
+            &__data {
+              flex-direction: column; // Stack data vertically on mobile screens
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Media query for very small screens
+  @media (max-width: 480px) {
+    &__summary {
+      font-size: 14px; // Adjust font size for very small screens
+    }
+
+    &__main {
+      &__list {
+        &__item {
+          &__info {
+            &__title {
+              font-size: 16px; // Adjust font size for very small screens
+            }
+
+            &__price {
+              font-size: 16px; // Adjust font size for very small screens
+            }
+          }
+        }
       }
     }
   }

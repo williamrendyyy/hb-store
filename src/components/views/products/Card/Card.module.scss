@@ -1,24 +1,61 @@
 .card {
   cursor: pointer;
+  padding: 1rem; /* Memberikan sedikit padding agar konten tidak menempel di tepi */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(
+      -5px
+    ); /* Memberikan efek hover untuk membuat kartu lebih interaktif */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
   &__image {
     width: 100%;
     aspect-ratio: 1 / 1;
     height: auto;
     border-radius: 6px;
+    object-fit: cover; /* Mengatur gambar agar sesuai dalam frame */
+    margin-bottom: 1rem; /* Memberikan jarak antara gambar dan teks */
   }
+
   &__title {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     font-weight: 600;
-    margin-top: 10px;
+    margin-top: 0.5rem;
+    color: #333;
   }
+
   &__category {
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-weight: 500;
-    margin-top: 5px;
+    margin-top: 0.25rem;
+    color: #666;
   }
+
   &__price {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     font-weight: 600;
-    margin-top: 5px;
+    margin-top: 0.5rem;
+    color: #000;
+  }
+}
+
+/* Media Queries untuk menyesuaikan pada layar lebih kecil */
+@media (max-width: 768px) {
+  .card {
+    padding: 0.75rem;
+
+    &__title {
+      font-size: 1rem; /* Mengurangi ukuran font pada layar kecil */
+    }
+
+    &__category,
+    &__price {
+      font-size: 0.875rem; /* Mengurangi ukuran font pada layar kecil */
+    }
   }
 }

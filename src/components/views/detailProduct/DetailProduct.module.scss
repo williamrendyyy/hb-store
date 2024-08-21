@@ -1,8 +1,10 @@
 .detail {
-  padding: 20vh 20vw;
+  padding: 20px 15vw;
   &__main {
     display: flex;
     gap: 60px;
+    flex-direction: row; // Ensure the layout stays horizontal on larger screens
+
     &__left {
       width: 60%;
       &__image {
@@ -65,6 +67,37 @@
         padding: 25px !important;
         border-radius: 8px;
       }
+    }
+  }
+
+  // Media query for smaller screens
+  @media (max-width: 768px) {
+    padding: 20px 10vw; // Adjust padding on smaller screens
+
+    &__main {
+      flex-direction: column; // Stack items vertically on smaller screens
+      gap: 20px; // Reduce gap between items
+    }
+
+    &__left,
+    &__right {
+      width: 100%; // Ensure both sections take full width
+    }
+
+    &__size {
+      grid-template-columns: repeat(
+        2,
+        1fr
+      ); // Adjust grid columns on smaller screens
+    }
+  }
+
+  // Media query for very small screens
+  @media (max-width: 480px) {
+    padding: 20px 5vw; // Further adjust padding on very small screens
+
+    &__size {
+      grid-template-columns: 1fr; // Stack size items in a single column
     }
   }
 }

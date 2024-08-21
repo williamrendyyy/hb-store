@@ -2,7 +2,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import styles from "./Navbar.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { title } from "process";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
@@ -22,6 +21,13 @@ const Navbar = () => {
   const { data }: any = useSession();
   const { pathname, push } = useRouter();
   const [dropdownUser, setDropdownUser] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      push(`/search?query=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
   return (
     <div className={styles.navbar}>
       <h1 className={styles.navbar__title}>HB STORE</h1>
@@ -38,6 +44,23 @@ const Navbar = () => {
           </Link>
         ))}
       </div>
+
+      <div className={styles.navbar__search}>
+        <input
+          type="text"
+          placeholder="Search for items..."
+          className={styles.navbar__search__input}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button
+          className={styles.navbar__search__button}
+          onClick={handleSearch}
+        >
+          <i className="bx bx-search" />
+        </button>
+      </div>
+
       {data ? (
         <div className={styles.navbar__user}>
           <div className={styles.navbar__user__cart}>

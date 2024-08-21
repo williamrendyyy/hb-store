@@ -6,6 +6,7 @@ import Navbar from "../Navbar";
 import { Dispatch, SetStateAction, useContext, useEffect } from "react";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import { ToasterType } from "@/types/toaster.type";
+import Footer from "../Footer";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -13,6 +14,7 @@ const lato = Lato({
 });
 
 const disableNavbar = ["auth", "admin", "member"];
+const disableFooter = ["auth", "admin", "member"];
 
 type Propstypes = {
   children: React.ReactNode;
@@ -35,6 +37,7 @@ const AppShell = (props: Propstypes) => {
         {!disableNavbar.includes(pathname.split("/")[1]) && <Navbar />}
         {children}
         {Object.keys(toaster).length > 0 && <Toaster />}
+        {!disableFooter.includes(pathname.split("/")[1]) && <Footer />}
       </div>
     </>
   );

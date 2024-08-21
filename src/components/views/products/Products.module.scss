@@ -1,41 +1,34 @@
 .product {
-  padding: 120px 2.5vw 100px;
-  &__title {
-    font-size: 24px;
-    font-weight: 500;
-  }
+  padding: 20px 2.5vw;
+  background-color: #f9f9f9;
+
   &__main {
     display: flex;
-    gap: 60px;
-    &__filter {
-      width: 15%;
-      &__data {
-        padding: 20px 0;
-        border-bottom: 1px solid #000;
-        &__title {
-          font-size: 18px;
-          font-weight: 600;
-        }
-        &__list {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-          margin-top: 10px;
-          &__item {
-            &__label {
-              font-size: 18px;
-              margin-left: 10px;
-            }
-          }
-        }
-      }
-    }
+    gap: 2rem;
+    flex-wrap: wrap; /* Memungkinkan elemen untuk menumpuk jika ruang tidak cukup */
     &__content {
-      width: 100%;
+      flex: 1; /* Memungkinkan konten untuk mengambil sisa ruang */
       display: grid;
       gap: 10px;
-      row-gap: 40px;
-      grid-template-columns: repeat(3, 1fr);
+      row-gap: 2.5rem;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(400px, 1fr)
+      ); /* Kolom yang fleksibel sesuai lebar item */
     }
+  }
+}
+
+/* Media Queries untuk layar yang lebih kecil */
+@media (max-width: 768px) {
+  .product__main {
+    flex-direction: column; /* Mengubah layout ke kolom pada layar kecil */
+    gap: 1.5rem;
+  }
+  .product__main__content {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(400px, 1fr)
+    ); /* Grid lebih fleksibel pada layar kecil */
   }
 }

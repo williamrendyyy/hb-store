@@ -1,33 +1,85 @@
 .home {
-  background-color: #f8f8f8;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  h1 {
-    font-size: 48px;
+  padding: 2rem 5vw;
+  background-color: #f9f9f9;
+  flex-wrap: wrap; /* Menambahkan ini agar elemen bisa menumpuk pada layar yang lebih kecil */
+  gap: 2rem;
+
+  &__text {
+    max-width: 50%;
+    flex: 1; /* Membiarkan teks menyesuaikan ukuran yang tersedia */
+    min-width: 300px; /* Memberikan lebar minimal agar tidak terlalu kecil */
+    &__title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1.25rem;
+    }
+    &__subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  &__button {
+    padding: 0.75rem 1.5rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    &:hover {
+      background-color: #333;
+    }
   }
 
   &__image {
-    margin-right: 85%;
-    width: 100%;
-    height: 100%;
-    background-image: url("https://mrwallpaper.com/images/hd/image-all-white-sneakers-tplj1n9wo7x0mjzu.jpg");
-    background-position: fixed;
-    &__text {
-      position: fixed;
-      top: 50%;
-      left: 70%;
-      transform: translate(-50%, -50%);
-      color: #141414;
-      font-size: 40px;
-      padding: 0.5rem 1rem;
-      &__button {
-        background-color: #000000;
-        position: center;
-        margin-top: 10px;
-      }
-    }
+    max-width: 50%;
+    flex: 1; /* Membiarkan gambar menyesuaikan ukuran yang tersedia */
+    display: flex;
+    justify-content: flex-end;
+    min-width: 300px; /* Memberikan lebar minimal agar tidak terlalu kecil */
+  }
+}
+
+.heroImage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover; /* Menyesuaikan gambar agar tidak terdistorsi */
+}
+
+/* Media Queries untuk tampilan lebih kecil */
+@media (max-width: 768px) {
+  .home {
+    padding: 4rem 3vw;
+    flex-direction: column; /* Mengubah layout ke kolom pada layar yang lebih kecil */
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .home__text,
+  .home__image {
+    max-width: 100%; /* Memastikan elemen mengambil seluruh lebar pada layar kecil */
+    text-align: center; /* Menyelaraskan teks di tengah */
+  }
+
+  .home__image {
+    justify-content: center;
+  }
+
+  .home__text__title {
+    font-size: 2rem; /* Mengurangi ukuran font pada layar kecil */
+  }
+
+  .home__text__subtitle {
+    font-size: 1rem; /* Mengurangi ukuran font pada layar kecil */
+  }
+
+  .heroImage {
+    width: 80%; /* Mengurangi ukuran gambar pada layar kecil */
   }
 }
