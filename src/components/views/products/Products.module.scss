@@ -2,10 +2,17 @@
   padding: 20px 2.5vw;
   background-color: #f9f9f9;
 
+  &__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
   &__main {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap; /* Memungkinkan elemen untuk menumpuk jika ruang tidak cukup */
+
     &__content {
       flex: 1; /* Memungkinkan konten untuk mengambil sisa ruang */
       display: grid;
@@ -17,18 +24,43 @@
       ); /* Kolom yang fleksibel sesuai lebar item */
     }
   }
-}
 
-/* Media Queries untuk layar yang lebih kecil */
-@media (max-width: 768px) {
-  .product__main {
-    flex-direction: column; /* Mengubah layout ke kolom pada layar kecil */
-    gap: 1.5rem;
+  /* Responsif untuk tablet dan di bawahnya */
+  @media (max-width: 768px) {
+    padding: 15px 5vw;
+
+    &__title {
+      font-size: 1.75rem;
+    }
+
+    &__main {
+      gap: 1.5rem;
+
+      &__content {
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(300px, 1fr)
+        ); /* Mengubah ukuran minimum kolom */
+      }
+    }
   }
-  .product__main__content {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(400px, 1fr)
-    ); /* Grid lebih fleksibel pada layar kecil */
+
+  /* Responsif untuk ponsel */
+  @media (max-width: 480px) {
+    padding: 10px 5vw;
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__main {
+      gap: 1rem;
+
+      &__content {
+        grid-template-columns: 1fr; /* Satu kolom per baris */
+        gap: 15px;
+        row-gap: 2rem;
+      }
+    }
   }
 }

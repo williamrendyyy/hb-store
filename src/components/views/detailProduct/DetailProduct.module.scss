@@ -1,12 +1,33 @@
 .detail {
   padding: 20px 15vw;
+  background-color: #f3f3f3;
+
+  &__title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+
+    &__text {
+      margin-left: 5px;
+      color: #758694;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+    }
+  }
+
   &__main {
     display: flex;
-    gap: 60px;
-    flex-direction: row; // Ensure the layout stays horizontal on larger screens
+    gap: 50px;
+    flex-direction: row;
 
     &__left {
-      width: 60%;
+      width: 50%;
+
       &__image {
         width: 100%;
         aspect-ratio: 1/1;
@@ -17,26 +38,35 @@
 
     &__right {
       width: 40%;
+
       &__category {
         color: #758694;
         margin-top: 5px;
       }
+
       &__price {
         margin-top: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
       }
+
       &__description {
+        text-align: justify;
         margin-top: 10px;
-        font-size: 16px;
+        font-size: 15px;
         line-height: 1.6;
       }
+
       &__subtitle {
-        margin-top: 60px;
+        margin-top: 40px;
         font-weight: 600;
       }
+
       &__size {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
+
         &__item {
           &__label {
             width: 100%;
@@ -49,55 +79,80 @@
             padding: 5px;
             border-radius: 8px;
           }
+
           &__input {
             appearance: none;
           }
+
           &__input:checked + &__label {
             border: 1px solid #000;
           }
+
           &__input:disabled + &__label {
             opacity: 0.5;
             cursor: default;
           }
         }
       }
+
       &__add {
-        margin-top: 50px;
+        margin-top: 30px;
         width: 100%;
-        padding: 25px !important;
+        padding: 15px;
         border-radius: 8px;
       }
     }
   }
 
-  // Media query for smaller screens
+  /* Responsif untuk tablet */
   @media (max-width: 768px) {
-    padding: 20px 10vw; // Adjust padding on smaller screens
+    padding: 15px 10vw;
 
     &__main {
-      flex-direction: column; // Stack items vertically on smaller screens
-      gap: 20px; // Reduce gap between items
-    }
+      gap: 30px;
+      flex-direction: column;
 
-    &__left,
-    &__right {
-      width: 100%; // Ensure both sections take full width
-    }
+      &__left {
+        width: 100%;
+      }
 
-    &__size {
-      grid-template-columns: repeat(
-        2,
-        1fr
-      ); // Adjust grid columns on smaller screens
+      &__right {
+        width: 100%;
+
+        &__size {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__add {
+          padding: 15px;
+        }
+      }
     }
   }
 
-  // Media query for very small screens
+  /* Responsif untuk ponsel */
   @media (max-width: 480px) {
-    padding: 20px 5vw; // Further adjust padding on very small screens
+    padding: 10px 5vw;
 
-    &__size {
-      grid-template-columns: 1fr; // Stack size items in a single column
+    &__main {
+      gap: 20px;
+
+      &__left {
+        width: 100%;
+      }
+
+      &__right {
+        width: 100%;
+
+        &__size {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__add {
+          padding: 12px;
+          font-size: 14px;
+        }
+      }
     }
   }
 }

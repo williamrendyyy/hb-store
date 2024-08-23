@@ -6,7 +6,7 @@
   height: 90px;
   background-color: #ffffff;
   color: #040d12;
-  padding: 20px 5%; // Menggunakan persentase untuk padding agar lebih fleksibel
+  padding: 20px 2.5%; // Menggunakan persentase untuk padding agar lebih fleksibel
   top: 0;
   left: 0;
   z-index: 1000;
@@ -20,12 +20,12 @@
     display: flex;
     gap: 20px;
     height: 100%;
-    // width: 75%;
     &__item {
       font-size: 1.125rem;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
-      height: 100%;
+      width: 110px;
+      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -140,57 +140,81 @@
     cursor: pointer;
     font-size: 1rem;
   }
-}
 
-// Media queries untuk penyesuaian di layar lebih kecil
-@media (max-width: 768px) {
-  .navbar {
-    padding: 10px 20px;
-    height: auto;
+  // Responsif untuk perangkat HP
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
+    height: auto;
+    padding: 10px;
 
     &__title {
+      margin-top: 10px;
       font-size: 2rem;
-      margin-bottom: 10px;
     }
 
     &__nav {
-      flex-direction: column;
-      align-items: flex-start;
+      width: 20px;
+      height: 30px;
+      justify-content: space-between;
+      gap: 10px;
 
       &__item {
-        padding: 5px 0;
+        width: auto;
+        font-size: 1rem;
       }
     }
 
     &__search {
-      width: 100%; // Full width for the search bar on small screens
-      margin-top: 20px; // Add some margin to separate from other elements
-      flex-direction: column; // Stack input and button vertically
-      gap: 10px; // Add space between input and button
+      width: 100%;
+      margin-top: 10px;
 
       &__input {
-        width: 100%; // Full width for the input on small screens
-        border-radius: 4px; // Remove rounded corners for a better look on small screens
+        width: calc(100% - 70px);
+        min-width: 0;
+        font-size: 1rem;
       }
 
       &__button {
-        width: 100%; // Full width for the button on small screens
-        border-radius: 4px; // Remove rounded corners for a better look on small screens
+        width: 60px;
       }
     }
 
     &__user {
+      width: 100%;
+      justify-content: space-between;
       margin-top: 10px;
-      flex-direction: column;
-      align-items: flex-start;
+
+      &__cart {
+        &__icon {
+          font-size: 1.5rem;
+        }
+      }
 
       &__profile {
-        &__dropdown {
-          top: 40px;
-          right: auto;
-          left: 0;
+        &__image {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__nav {
+      &__item {
+        font-size: 0.875rem;
+      }
+    }
+
+    &__user {
+      &__cart {
+        &__icon {
+          font-size: 1.25rem;
         }
       }
     }

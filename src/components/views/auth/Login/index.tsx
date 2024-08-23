@@ -78,7 +78,7 @@ const LoginView = () => {
           {isLoading ? "Loading..." : "Login"}
         </Button>
       </form>
-      <hr className={styles.login__devider} />
+
       <div className={styles.login__other}>
         <Button
           type="button"

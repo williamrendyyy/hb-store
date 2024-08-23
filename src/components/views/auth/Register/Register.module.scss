@@ -1,8 +1,72 @@
 .register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px;
+
   &__input {
-    margin: 20px 0;
+    width: 100%;
+    padding: 12px 16px;
+    margin: 10px 0; // Margin dikurangi agar lebih proporsional di mobile
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:focus {
+      outline: none;
+      border-color: #28a745;
+      box-shadow: 0px 2px 6px rgba(40, 167, 69, 0.5);
+    }
   }
+
   &__button {
     width: 100%;
+    padding: 12px 16px;
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+  // Responsif untuk perangkat mobile
+  @media (max-width: 768px) {
+    padding: 15px;
+
+    &__input {
+      font-size: 14px;
+      padding: 10px 14px;
+    }
+
+    &__button {
+      font-size: 16px;
+      padding: 10px 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    width: 100%; // memastikan form mengisi seluruh lebar layar
+
+    &__input {
+      font-size: 14px; // ukuran font lebih kecil
+      padding: 8px 12px; // padding yang lebih kecil agar proporsional
+      margin: 8px 0; // mengurangi margin agar elemen tidak terlalu berjarak
+    }
+
+    &__button {
+      font-size: 16px;
+      padding: 10px 14px; // padding lebih kecil untuk tombol
+    }
   }
 }

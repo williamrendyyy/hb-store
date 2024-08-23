@@ -22,6 +22,7 @@ const Navbar = () => {
   const { pathname, push } = useRouter();
   const [dropdownUser, setDropdownUser] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
   const handleSearch = () => {
     if (searchQuery.trim()) {
       push(`/search?query=${encodeURIComponent(searchQuery)}`);

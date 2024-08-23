@@ -45,17 +45,17 @@
 }
 
 /* Media Queries untuk menyesuaikan pada layar lebih kecil */
-@media (max-width: 768px) {
-  .card {
-    padding: 0.75rem;
+// @media (max-width: 768px) {
+//   .card {
+//     padding: 0.75rem;
 
-    &__title {
-      font-size: 1rem; /* Mengurangi ukuran font pada layar kecil */
-    }
+//     &__title {
+//       font-size: 1rem; /* Mengurangi ukuran font pada layar kecil */
+//     }
 
-    &__category,
-    &__price {
-      font-size: 0.875rem; /* Mengurangi ukuran font pada layar kecil */
-    }
-  }
-}
+//     &__category,
+//     &__price {
+//       font-size: 0.875rem; /* Mengurangi ukuran font pada layar kecil */
+//     }
+//   }
+// }
